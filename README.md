@@ -1,1 +1,3 @@
-# SDL3-side-scroller
+**First Game Dev Project**
+
+2d side scroller "RPG" 
