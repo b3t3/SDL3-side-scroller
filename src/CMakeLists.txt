@@ -1,15 +1,10 @@
-﻿# CMakeList.txt : Top-level CMake project file, do global configuration
-# and include sub-projects here.
-#
-cmake_minimum_required (VERSION 3.8)
+find_package(SDL3 REQUIRED)
+find_package(SDL3_image REQUIRED)
+add_executable (RPG "RPG.cpp" "RPG.h" "animation.h" "gameobject.h" )
 
-# Enable Hot Reload for MSVC compilers if supported.
-if (POLICY CMP0141)
-  cmake_policy(SET CMP0141 NEW)
-  set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
+if (CMAKE_VERSION VERSION_GREATER 3.12)
+  set_property(TARGET RPG PROPERTY CXX_STANDARD 20)
 endif()
 
-project ("RPG")
-
-# Include sub-projects.
-add_subdirectory ("RPG")
+target_link_libraries(RPG PRIVATE SDL3::SDL3 SDL3_image::SDL3_image)
+target_include_directories(RPG PRIVATE "ext/")
