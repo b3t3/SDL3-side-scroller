@@ -1,12 +1,12 @@
 #pragma once
 #include <SDL3/SDL.h>
-#include <stdbool.h>
 
 class Menu {
 public:
     Menu(SDL_Renderer* renderer);
     
     void handleEvent(const SDL_Event& event);
+    void update(float deltaTime);  // Add this
     void render();
     bool shouldStartGame() const;
     void reset();
@@ -14,5 +14,5 @@ public:
 private:
     SDL_Renderer* renderer_;
     bool startGame;
-
+    float pulseTime;
 };
